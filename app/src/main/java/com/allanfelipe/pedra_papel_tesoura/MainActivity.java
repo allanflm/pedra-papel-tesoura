@@ -3,6 +3,7 @@ package com.allanfelipe.pedra_papel_tesoura;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -55,7 +56,22 @@ public class MainActivity extends AppCompatActivity {
     }
     private void verificarGanhador(String escolhaUsuario) {
         String escolhaDoApp = gerarEscolhaAleatoriaApp();
-        //System.out.println("Item clicado: " + escolhaUsuario);
+        TextView textoResultado = findViewById(R.id.text_resultado);
+
+        if ((escolhaDoApp == PEDRA && escolhaUsuario == TESOURA) ||
+                (escolhaDoApp == PAPEL && escolhaUsuario == PEDRA) ||
+                (escolhaDoApp == TESOURA && escolhaUsuario == PAPEL)) { // App ganhou!
+            textoResultado.setText("Voce perdeu! :(");
+
+        } else if ((escolhaUsuario == PEDRA && escolhaDoApp == TESOURA) ||
+                (escolhaUsuario == PAPEL && escolhaDoApp == PEDRA) ||
+                (escolhaUsuario == TESOURA && escolhaDoApp == PAPEL)) { // Usuario é o ganhador!
+            textoResultado.setText("Você ganhou!!! :)");
+        } else { // Empate
+
+            textoResultado.setText("Empatamos");
+
+        }
 
     }
 
